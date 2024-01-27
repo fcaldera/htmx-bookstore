@@ -20,6 +20,5 @@ defmodule BookStore.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: BookStore.Supervisor]
     Supervisor.start_link(children, opts)
-
   end
 end
