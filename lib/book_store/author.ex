@@ -10,7 +10,6 @@ defmodule BookStore.Author do
     timestamps()
   end
 
-
   def changeset(author, params \\ %{}) do
     author
     |> cast(params, [:name, :bio, :picture])
