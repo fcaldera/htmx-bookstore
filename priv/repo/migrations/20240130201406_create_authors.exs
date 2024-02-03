@@ -6,6 +6,7 @@ defmodule BookStore.Repo.Migrations.CreateAuthors do
       add(:name, :string)
       add(:bio, :string)
       add(:picture, :string)
+      add(:origin, :string)
 
       timestamps()
     end

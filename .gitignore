@@ -24,3 +24,7 @@ book_store-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# SQLite3 Database files
+book_store_*.db 
+book_store_*.db* 

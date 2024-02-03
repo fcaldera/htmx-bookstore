@@ -13,6 +13,7 @@ defmodule BookStore.Application do
     children = [
       # Starts a worker by calling: BookStore.Worker.start_link(arg)
       # {BookStore.Worker, arg}
+      BookStore.Repo,
       {Plug.Cowboy, scheme: :http, plug: BookStore.Router, port: 4000}
     ]
 
