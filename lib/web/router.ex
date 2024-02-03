@@ -2,6 +2,12 @@ defmodule BookStore.Router do
   use Plug.Router
   require EEx
 
+  import Ecto.Query, only: [from: 2]
+
+  alias BookStore.Repo
+  alias BookStore.Author
+
+  # Load templates from files
   EEx.function_from_file(:def, :layout, "lib/web/layout.html.eex", [:assigns])
   EEx.function_from_file(:def, :index, "lib/web/index.html.eex", [:assigns])
   EEx.function_from_file(:def, :author_index, "lib/web/author/index.html.eex", [:assigns])
@@ -47,6 +53,9 @@ defmodule BookStore.Router do
   end
 
   get "/authors" do
-    render(conn, :author_index, authors: [])
+    # query = from a in Author, select: {a.id, a.name, a.origin}
+    authors = Repo.all(Author)
+
+    render(conn, :author_index, authors: authors)
   end
 end
