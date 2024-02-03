@@ -1,0 +1,5 @@
+<h2>Authors</h2>
+
+<%= for author <- @authors do %>
+  <a href="/author/#{author.id}>"><%= author.name %></a>
+<% end %>

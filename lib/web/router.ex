@@ -4,6 +4,7 @@ defmodule BookStore.Router do
 
   EEx.function_from_file(:def, :layout, "lib/web/layout.html.eex", [:assigns])
   EEx.function_from_file(:def, :index, "lib/web/index.html.eex", [:assigns])
+  EEx.function_from_file(:def, :author_index, "lib/web/author/index.html.eex", [:assigns])
 
   if Mix.env() == :dev do
     use Plug.Debugger
@@ -43,5 +44,9 @@ defmodule BookStore.Router do
 
   get "/books" do
     render(conn, :index, message: "Hello")
+  end
+
+  get "/authors" do
+    render(conn, :author_index, authors: [])
   end
 end
