@@ -3,7 +3,7 @@
 <ul>
   <%= for author <- @authors do %>
     <li>
-      <a href=<%= "/authors/#{author.id}" %>>
+      <a href=<%="/authors/#{author.id}" %>>
         <%= author.name %>
       </a>
     </li>
