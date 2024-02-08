@@ -8,17 +8,20 @@
   <link href="/assets/app.css" rel="stylesheet">
 </head>
 
-<body>
-  <nav>
-    <ol>
+<body class="container">
+  <nav class="navbar">
+    <h1 class="brand">
+      <a href="/">BookStore</a>
+    </h1>
+    <ol class="nav">
       <li><a href="/books">Books</a></li>
       <li><a href="/authors">Authors</a></li>
     </ol>
   </nav>
-  <main>
+  <main class="main">
     <%= @inner_content %>
   </main>
-  <footer>Book Store</footer>
+  <footer class="footer">Elixir ♡  HTMX</footer>
 </body>
 
 </html>

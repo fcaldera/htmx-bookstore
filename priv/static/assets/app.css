@@ -1,3 +1,51 @@
 @import url(reset.css) layer(reset);
 
+body {
+	font-size: 1rem;
+}
 
+.container {
+	max-width: 1024px;
+	margin: 0 auto;
+	padding: 1.5rem;
+}
+
+.navbar {
+	display: flex;
+	align-items: center;
+	margin-bottom: 2rem;
+
+	& .brand {
+		font-size: 1rem;
+		margin: 0;
+
+		&>a {
+			text-decoration: none;
+			color: inherit;
+		}
+	}
+
+	& .nav {
+		list-style: none;
+		display: flex;
+		gap: 0.75rem;
+		padding: 0;
+		margin: 0 0 0 auto;
+
+		& a {
+			color: inherit;
+		}
+	}
+}
+
+.main {
+	padding: 0;
+	margin-bottom: 4rem;
+}
+
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #888;
+}
