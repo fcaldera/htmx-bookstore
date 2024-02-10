@@ -2,7 +2,8 @@ defmodule BookStore.Router do
   use Plug.Router
   require EEx
 
-  import Ecto.Query, only: [from: 2]
+  # import Ecto.Query, only: [from: 2]
+  import Ecto.Changeset
 
   alias BookStore.Repo
   alias BookStore.Author
@@ -11,6 +12,8 @@ defmodule BookStore.Router do
   EEx.function_from_file(:def, :layout, "lib/web/layout.html.eex", [:assigns])
   EEx.function_from_file(:def, :index, "lib/web/index.html.eex", [:assigns])
   EEx.function_from_file(:def, :author_index, "lib/web/author/index.html.eex", [:assigns])
+  EEx.function_from_file(:def, :author_show, "lib/web/author/show.html.eex", [:assigns])
+  EEx.function_from_file(:def, :author_new, "lib/web/author/new.html.eex", [:assigns])
 
   if Mix.env() == :dev do
     use Plug.Debugger
@@ -60,7 +63,16 @@ defmodule BookStore.Router do
   get "/authors" do
     # query = from a in Author, select: {a.id, a.name, a.origin}
     authors = Repo.all(Author)
-
     render(conn, :author_index, authors: authors)
+  end
+
+  get "/authors/new" do
+    changeset = Author.changeset(%Author{}, %{name: "Fernando"}) 
+    render(conn, :author_new, changeset: changeset)
+  end
+
+  get "/authors/:id" do
+    author = Repo.get(Author, id)
+    render(conn, :author_show, author: author)
   end
 end

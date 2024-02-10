@@ -1,0 +1,3 @@
+<h2><%= @author.name %></h2>
+<!-- <img src={@author.picture} /> -->
+<p><%= @author.bio %></p>

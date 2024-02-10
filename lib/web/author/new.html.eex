@@ -1,0 +1,11 @@
+<form action="/authors/new" method="post">
+  <fieldset>
+    <legend>New Author</legend>
+    <div>
+      <p>
+        <label for="name">Name</label>
+        <input name="name" id="name" type="text" placeholder="Name" value=<%=get_field(@changeset, :name) %>>
+      </p>
+    </div>
+  </fieldset>
+</form>
