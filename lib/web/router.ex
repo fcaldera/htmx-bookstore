@@ -14,6 +14,7 @@ defmodule BookStore.Router do
   EEx.function_from_file(:def, :author_index, "lib/web/author/index.html.eex", [:assigns])
   EEx.function_from_file(:def, :author_show, "lib/web/author/show.html.eex", [:assigns])
   EEx.function_from_file(:def, :author_new, "lib/web/author/new.html.eex", [:assigns])
+  EEx.function_from_file(:def, :author_edit, "lib/web/author/edit.html.eex", [:assigns])
 
   if Mix.env() == :dev do
     use Plug.Debugger
@@ -88,7 +89,36 @@ defmodule BookStore.Router do
   end
 
   get "/authors/:id" do
-    author = Repo.get(Author, id)
+    author = Repo.get!(Author, id)
     render(conn, :author_show, author: author)
   end
+
+  get "/authors/:id/edit" do
+    author = Repo.get!(Author, id)
+    changeset = Author.changeset(author)
+    render(conn, :author_edit, changeset: changeset)
+  end
+
+  post "authors/:id/edit" do
+    result =
+      Repo.get!(Author, id)
+      |> Author.changeset(conn.body_params)
+      |> Repo.update()
+
+    case result do
+      {:ok, author} ->
+        redirect(conn, "/authors/#{author.id}")
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, :author_edit, changeset: changeset)
+    end
+  end
+
+  get "/authors/:id/delete" do
+    author = Repo.get!(Author, id)
+    {:ok, _author} = Repo.delete(author)
+
+    redirect(conn, "/authors")
+  end
+
 end

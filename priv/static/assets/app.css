@@ -1,89 +1,107 @@
 @import url(reset.css) layer(reset);
 
 body {
-	font-size: 1rem;
+  font-size: 1rem;
 }
 
 .container {
-	max-width: 1024px;
-	margin: 0 auto;
-	padding: 1.5rem;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 1.5rem;
 }
 
 .navbar {
-	display: flex;
-	align-items: center;
-	margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
 
-	& .brand {
-		font-size: 1rem;
-		margin: 0;
+  & .brand {
+    font-size: 1rem;
+    margin: 0;
 
-		&>a {
-			text-decoration: none;
-			color: inherit;
-		}
-	}
+    & > a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
 
-	& .nav {
-		list-style: none;
-		display: flex;
-		gap: 0.75rem;
-		padding: 0;
-		margin: 0 0 0 auto;
+  & .nav {
+    list-style: none;
+    display: flex;
+    gap: 0.75rem;
+    padding: 0;
+    margin: 0 0 0 auto;
 
-		& a {
-			color: inherit;
-		}
-	}
+    & a {
+      color: inherit;
+    }
+  }
 }
 
 .main {
-	padding: 0;
-	margin-bottom: 4rem;
+  padding: 0;
+  margin-bottom: 4rem;
 }
 
 .footer {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+
+header {
+  margin-bottom: 1.2rem;
+
+  & > h2 {
+    margin: 0;
+  }
 }
 
 section {
-	margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 /* Forms */
 fieldset {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	margin-bottom: 1rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  margin-bottom: 1rem;
 }
 
 fieldset legend,
 label {
-	display: block;
-	margin-bottom: 0.25rem;
+  display: block;
+  margin-bottom: 0.25rem;
 }
 
 input:not([type="checkbox"], [type="radio"]),
 select,
 textarea {
-	width: 100%;
-	padding: 0.5rem;
-	margin-bottom: 0.25rem;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 textarea {
-	resize: none;
+  resize: none;
 }
 
 button {
-	padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.5rem;
 }
 
 .error {
-	color: crimson;
+  color: crimson;
+}
+
+/* Utilities */
+.mb-none { margin-bottom: 0; }
+.mb-lg { margin-bottom: 1.25rem; }
+.mr-sm { margin-right: .5rem; }
+.mr { margin-right: 1rem; }
+
+.text-danger {
+	color: tomato;
 }

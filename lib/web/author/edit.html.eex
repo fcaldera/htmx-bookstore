@@ -1,6 +1,6 @@
-<h2>New Author</h2>
+<h2>Edit Author</h2>
 
-<form action="/authors/new" method="post">
+<form action="/authors/<%=get_field(@changeset,:id)%>/edit" method="post">
   <fieldset>
     <p>
       <label for="name">Name</label>
@@ -32,5 +32,5 @@
         value="<%=get_field(@changeset,:picture)%>" />
     </p>
   </fieldset>
-  <button class="mr-sm">Save</button> <a href="/authors">Cancel</a>
+  <button class="mr-sm">Save</button> <a href="/authors/<%=get_field(@changeset,:id)%>">Cancel</a>
 </form>
