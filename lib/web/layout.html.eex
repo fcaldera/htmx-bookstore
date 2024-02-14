@@ -21,7 +21,7 @@
   <main class="main">
     <%= @inner_content %>
   </main>
-  <footer class="footer">Elixir ♡  HTMX</footer>
+  <footer class="footer">Elixir ♡ HTMX</footer>
 </body>
 
 </html>

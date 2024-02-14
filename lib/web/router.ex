@@ -67,8 +67,24 @@ defmodule BookStore.Router do
   end
 
   get "/authors/new" do
-    changeset = Author.changeset(%Author{}, %{name: "Fernando"}) 
+    changeset = Author.changeset(%Author{})
     render(conn, :author_new, changeset: changeset)
+  end
+
+  post "authors/new" do
+    result =
+      %Author{}
+      |> Author.changeset(conn.body_params)
+      |> Repo.insert()
+
+    case result do
+      {:ok, _author} ->
+        redirect(conn, "/authors")
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, :author_new, changeset: changeset)
+    end
+
   end
 
   get "/authors/:id" do

@@ -14,6 +14,6 @@ defmodule BookStore.Author do
   def changeset(author, params \\ %{}) do
     author
     |> cast(params, [:name, :bio, :picture, :origin])
-    |> validate_required([:name, :origin])
+    |> validate_required([:name, :origin], message: "This field is required.")
   end
 end

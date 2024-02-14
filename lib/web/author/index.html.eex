@@ -1,15 +1,15 @@
 <h2>Authors</h2>
 
+<section>
+  <ul>
+    <%= for author <- @authors do %>
+      <li>
+        <a href=<%="/authors/#{author.id}" %>>
+          <%= author.name %>
+        </a>
+      </li>
+      <% end %>
+  </ul>
+</section>
 
-<nav>
-  <a href="/authors/new">New Author</a>
-</nav>
-<ul>
-  <%= for author <- @authors do %>
-    <li>
-      <a href=<%="/authors/#{author.id}" %>>
-        <%= author.name %>
-      </a>
-    </li>
-    <% end %>
-</ul>
+<a href="/authors/new">New Author</a>
