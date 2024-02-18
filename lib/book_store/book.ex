@@ -7,7 +7,7 @@ defmodule BookStore.Book do
     field :title, :string
     field :publisher, :string
     field :price, :decimal
-    field :year, :string
+    field :year, :integer
 
     belongs_to :author, BookStore.Author
 
