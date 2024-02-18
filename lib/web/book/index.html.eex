@@ -1,0 +1,17 @@
+<header class="d-flex gap-2xl">
+  <h2>Books</h2>
+  <form action="/books" method="get" class="form-inline">
+    <label for="search">Search:</label>
+    <input id="search" name="q" type="search" />
+  </form>
+  <a href="/books/new">New Book</a>
+</header>
+<section class="gallery">
+  <%= for book <- @books do %>
+    <div class="gallery-item">
+      <a href="/books/<%= book.id %>">
+        <%= book.title %>
+      </a>
+    </div>
+    <% end %>
+</section>
