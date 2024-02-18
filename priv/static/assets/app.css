@@ -4,6 +4,10 @@ body {
   font-size: 1rem;
 }
 
+img {
+	width: 100%;
+}
+
 .container {
   max-width: 1024px;
   margin: 0 auto;
@@ -48,6 +52,11 @@ body {
   align-items: center;
   justify-content: center;
   color: #888;
+}
+
+ul.list {
+	text-decoration: none;
+	padding-left: 0;
 }
 
 header {
@@ -96,12 +105,49 @@ button {
   color: crimson;
 }
 
+.form-inline {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  label {
+    display: inline-flex;
+    margin-bottom: 0;
+  }
+
+  input[type="search"] {
+    margin: 0;
+    /* border-width: 1px; */
+    padding: 0.25rem;
+    /* border-radius: 9999px; */
+  }
+}
+
 /* Utilities */
 .mb-none { margin-bottom: 0; }
+.mt-none { margin-top: 0; }
 .mb-lg { margin-bottom: 1.25rem; }
+.mb-xl { margin-bottom: 1.5rem; }
+.mb-2xl { margin-bottom: 2rem; }
 .mr-sm { margin-right: .5rem; }
 .mr { margin-right: 1rem; }
+.pt-none { padding-top: 0; }
+.gap { gap: 1rem; }
+.gap-lg { gap: 1.25rem; }
+.gap-xl { gap: 1.5rem; }
+.gap-2xl { gap: 2rem; }
 
 .text-danger {
-	color: tomato;
+  color: tomato;
+}
+
+.grid-cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
 }

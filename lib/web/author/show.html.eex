@@ -1,12 +1,26 @@
 <header>
-  <h2><%= @author.name %></h2>
-  <small><%= @author.origin %></small>
-</header> 
-<!-- <img src={@author.picture} /> -->
-<p><%= @author.bio %></p>
-<p>
-  <a href="/authors" class="mr-sm">Back</a>
-  <span class="mr-sm">|</span>
-  <a href='<%="/authors/#{@author.id}/edit"%>' class="mr-sm">Edit</a>
-  <a href='<%="/authors/#{@author.id}/delete"%>' class="text-danger">Delete</a>
-</p>
+  <h2>
+    <%= @author.name %>
+  </h2>
+  <small>
+    <%= @author.origin %>
+  </small>
+</header>
+<section class="grid-cols-2">
+  <div>
+    <p class="mt-none mb-2xl">
+      <%= @author.bio %>
+    </p>
+    <p>
+      <a href="/authors" class="mr-sm">Back</a>
+      <span class="mr-sm">|</span>
+      <a href='<%="/authors/#{@author.id}/edit"%>' class="mr-sm">Edit</a>
+      <a href='<%="/authors/#{@author.id}/delete"%>' class="text-danger">Delete</a>
+    </p>
+  </div>
+  <div>
+    <%= if @author.picture do %>
+      <img src="<%=@author.picture%>" />
+      <% end %>
+  </div>
+</section>

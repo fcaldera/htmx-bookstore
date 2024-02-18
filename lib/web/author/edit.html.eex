@@ -28,7 +28,7 @@
     </p>
     <p>
       <label for="picture">Picture URL</label>
-      <input type="url" name="picture" id="picture" placeholder="e.g. https://picture.jpg"
+      <input type="text" name="picture" id="picture" placeholder="e.g. https://picture.jpg"
         value="<%=get_field(@changeset,:picture)%>" />
     </p>
   </fieldset>
