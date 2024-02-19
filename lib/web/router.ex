@@ -5,6 +5,7 @@ defmodule BookStore.Router do
   # import Ecto.Query, only: [from: 2]
   import Ecto.Changeset
 
+  alias BookStore.Book
   alias BookStore.Repo
   alias BookStore.Author
 
@@ -58,8 +59,9 @@ defmodule BookStore.Router do
     redirect(conn, "/books")
   end
 
-  get "/books" do
-    render(conn, :book_index, message: "Hello")
+  get "/books"  do
+    books = Repo.all(Book) |> Repo.preload(:author)
+    render(conn, :book_index, books: books, params: conn.params)
   end
 
   get "/authors" do

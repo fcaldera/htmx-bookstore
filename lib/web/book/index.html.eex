@@ -1,17 +1,23 @@
-<header class="d-flex gap-2xl">
+<header class="d-flex gap-2xl mb-3xl">
   <h2>Books</h2>
   <form action="/books" method="get" class="form-inline">
     <label for="search">Search:</label>
-    <input id="search" name="q" type="search" />
+    <input id="search" name="q" type="search" value="<%= @params[" q"]%>" />
   </form>
   <a href="/books/new">New Book</a>
 </header>
 <section class="gallery">
   <%= for book <- @books do %>
     <div class="gallery-item">
-      <a href="/books/<%= book.id %>">
-        <%= book.title %>
-      </a>
+      <img alt="Book cover" src="/images/book-cover.jpeg" />
+      <div class="gallery-item-body">
+        <a href="/books/<%= book.id %>">
+          <%= book.title %>
+        </a>
+        <p><%= book.author.name %></p> 
+        <p><%= book.publisher %></p> 
+        <p><%= book.year %></p> 
+      </div>
     </div>
     <% end %>
 </section>
