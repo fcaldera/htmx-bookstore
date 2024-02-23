@@ -2,7 +2,7 @@ defmodule BookStore.Router do
   use Plug.Router
   require EEx
 
-  # import Ecto.Query, only: [from: 2]
+  import Ecto.Query, only: [from: 2]
   import Ecto.Changeset
 
   alias BookStore.Book
@@ -59,8 +59,22 @@ defmodule BookStore.Router do
     redirect(conn, "/books")
   end
 
-  get "/books"  do
-    books = Repo.all(Book) |> Repo.preload(:author)
+  get "/books" do
+    # For more efficiency:
+    # query =
+    #   from b in Book,
+    #     join: a in Author,
+    #     on: a.id == b.author_id,
+    #     select: %{
+    #       id: b.id,
+    #       title: b.title,
+    #       publisher: b.publisher,
+    #       year: b.year,
+    #       author: %{id: a.id, name: a.name}
+    #     }
+
+    query = from b in Book, preload: :author
+    books = Repo.all(query)
     render(conn, :book_index, books: books, params: conn.params)
   end
 
@@ -88,7 +102,6 @@ defmodule BookStore.Router do
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :author_new, changeset: changeset)
     end
-
   end
 
   get "/authors/:id" do
@@ -123,5 +136,4 @@ defmodule BookStore.Router do
 
     redirect(conn, "/authors")
   end
-
 end
