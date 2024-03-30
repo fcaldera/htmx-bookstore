@@ -1,9 +1,5 @@
 <header class="d-flex gap-2xl">
   <h2>Authors</h2>
-  <form action="/authors" method="get" class="form-inline">
-    <label for="search">Search:</label>
-    <input id="search" name="q" type="search" />
-  </form>
 </header>
 <section>
   <ul class="list">

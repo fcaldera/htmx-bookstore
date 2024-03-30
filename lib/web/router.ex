@@ -60,22 +60,34 @@ defmodule BookStore.Router do
   end
 
   get "/books" do
-    # For more efficiency:
-    # query =
-    #   from b in Book,
-    #     join: a in Author,
-    #     on: a.id == b.author_id,
-    #     select: %{
-    #       id: b.id,
-    #       title: b.title,
-    #       publisher: b.publisher,
-    #       year: b.year,
-    #       author: %{id: a.id, name: a.name}
-    #     }
+    search = "%#{conn.params["q"]}%"
+    page = String.to_integer(conn.params["page"] || "1")
+    size = 8
 
-    query = from b in Book, preload: :author
+    query =
+      from b in Book,
+        join: a in Author,
+        on: a.id == b.author_id,
+        where: like(b.title, ^search) or like(b.publisher, ^search) or like(a.name, ^search),
+        select: %{
+          id: b.id,
+          title: b.title,
+          publisher: b.publisher,
+          year: b.year,
+          author: %{id: a.id, name: a.name}
+        },
+        limit: ^size,
+        offset: ^((page - 1) * size)
+
+
     books = Repo.all(query)
-    render(conn, :book_index, books: books, params: conn.params)
+
+    pagination = %{
+      prev: (if page == 1, do: nil, else: page - 1),
+      next: (if length(books) < size, do: nil, else: page + 1)
+    }
+
+    render(conn, :book_index, books: books, params: conn.params, pagination: pagination)
   end
 
   get "/authors" do
