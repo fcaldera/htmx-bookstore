@@ -12,8 +12,6 @@
       <%= @author.bio %>
     </p>
     <p>
-      <a href="/authors" class="mr-sm">Back</a>
-      <span class="mr-sm">|</span>
       <a href='<%="/authors/#{@author.id}/edit"%>' class="mr-sm">Edit</a>
       <a href='<%="/authors/#{@author.id}/delete"%>' class="text-danger">Delete</a>
     </p>

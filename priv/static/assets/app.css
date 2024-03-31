@@ -155,6 +155,15 @@ table.def-list {
   }
 }
 
+.slink {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 /* Utilities */
 .mb-none { margin-bottom: 0; }
 .mt-none { margin-top: 0; }

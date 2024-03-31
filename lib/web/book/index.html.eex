@@ -13,7 +13,9 @@
         <a href="/books/<%= book.id %>">
           <%= book.title %>
         </a>
-        <p><%= book.author.name %></p> 
+        <a href="/authors/<%= book.author.id %>" class="slink">
+          <%= book.author.name %>
+        </a>
         <p><%= book.publisher %></p> 
         <p><%= book.year %></p> 
       </div>
