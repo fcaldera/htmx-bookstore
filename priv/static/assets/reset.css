@@ -139,6 +139,7 @@ Tabular data
 table {
 	text-indent: 0; /* 1 */
 	border-color: inherit; /* 2 */
+	border-collapse: collapse;
 }
 
 /*

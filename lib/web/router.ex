@@ -17,6 +17,7 @@ defmodule BookStore.Router do
   EEx.function_from_file(:def, :author_new, "lib/web/author/new.html.eex", [:assigns])
   EEx.function_from_file(:def, :author_edit, "lib/web/author/edit.html.eex", [:assigns])
   EEx.function_from_file(:def, :book_index, "lib/web/book/index.html.eex", [:assigns])
+  EEx.function_from_file(:def, :book_show, "lib/web/book/show.html.eex", [:assigns])
 
   if Mix.env() == :dev do
     use Plug.Debugger
@@ -88,6 +89,26 @@ defmodule BookStore.Router do
     }
 
     render(conn, :book_index, books: books, params: conn.params, pagination: pagination)
+  end
+
+  get "/books/:id" do
+    query = 
+      from b in Book,
+        join: a in Author,
+        on: a.id == b.author_id,
+        where: b.id == ^id,
+        select: %{
+          id: b.id,
+          title: b.title,
+          publisher: b.publisher,
+          year: b.year,
+          author: %{id: a.id, name: a.name},
+          price: b.price,
+          isbn: b.isbn
+        }
+      
+    book = Repo.one!(query)
+    render(conn, :book_show, book: book)     
   end
 
   get "/authors" do

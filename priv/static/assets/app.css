@@ -148,6 +148,13 @@ button {
   }
 }
 
+table.def-list {
+  tr td:first-child {
+    font-weight: bold;
+    padding-right: 1rem;
+  }
+}
+
 /* Utilities */
 .mb-none { margin-bottom: 0; }
 .mt-none { margin-top: 0; }
