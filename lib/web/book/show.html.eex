@@ -28,7 +28,6 @@
   <div>
     <p>
       <a href='<%="/books/#{@book.id}/edit"%>' class="mr-sm">Edit</a>
-      <a href='<%="/books/#{@book.id}/delete"%>' class="text-danger">Delete</a>
     </p>
   </div>
 </section>

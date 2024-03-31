@@ -18,6 +18,7 @@ defmodule BookStore.Router do
   EEx.function_from_file(:def, :author_edit, "lib/web/author/edit.html.eex", [:assigns])
   EEx.function_from_file(:def, :book_index, "lib/web/book/index.html.eex", [:assigns])
   EEx.function_from_file(:def, :book_show, "lib/web/book/show.html.eex", [:assigns])
+  EEx.function_from_file(:def, :book_edit, "lib/web/book/edit.html.eex", [:assigns])
 
   if Mix.env() == :dev do
     use Plug.Debugger
@@ -109,6 +110,33 @@ defmodule BookStore.Router do
       
     book = Repo.one!(query)
     render(conn, :book_show, book: book)     
+  end
+  
+  get "/books/:id/edit" do
+    book = Repo.get!(Book, id)
+    
+    qa = from a in Author, 
+      select: %{id: a.id, name: a.name},
+      order_by: :name
+
+    authors = Repo.all(qa)
+    changeset = Book.changeset(book)
+    render(conn, :book_edit, changeset: changeset, authors: authors)
+  end
+
+  post "/books/:id/edit" do
+    result = 
+      Repo.get!(Book, id)
+      |> Book.changeset(conn.body_params)
+      |> Repo.update()
+
+    case result do
+      {:ok, book} -> 
+        redirect(conn, "/books/#{book.id}")
+      
+      {:error, %Ecto.Changeset{} = changeset} -> 
+        render(conn, :book_edit, changeset: changeset)
+    end
   end
 
   get "/authors" do

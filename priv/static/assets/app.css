@@ -5,7 +5,7 @@ body {
 }
 
 img {
-	width: 100%;
+  width: 100%;
 }
 
 .container {
@@ -55,8 +55,8 @@ img {
 }
 
 ul.list {
-	text-decoration: none;
-	padding-left: 0;
+  text-decoration: none;
+  padding-left: 0;
 }
 
 header {
@@ -95,6 +95,16 @@ textarea {
 
 textarea {
   resize: none;
+}
+
+select {
+  background-color: transparent;
+  border: 1px solid #999;
+  border-radius: 2px;
+}
+
+select::-ms-expand {
+    display: none;
 }
 
 button {
