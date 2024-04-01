@@ -32,7 +32,7 @@ defmodule BookStore.Router do
   plug Plug.Static,
     at: "/",
     from: :book_store,
-    only: ["assets", "images", "favicon.ico"]
+    only: ["assets", "images", "favicon.ico", "vendor"]
 
   plug :match
   # plug(:put_secret_key_base)
