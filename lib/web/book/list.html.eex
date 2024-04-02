@@ -1,17 +1,5 @@
 <% search_term = @params["q"] %>
 
-<header class="d-flex gap-2xl mb-3xl">
-  <h2>Books</h2>
-  <form action="/books" method="get" class="form-inline">
-    <label for="search">Search:</label>
-    <input id="search" name="q" type="search" 
-      value="<%= search_term %>" 
-      hx-get="/books" 
-      hx-trigger="search, keyup delay:200ms changed"
-      hx-target="#results"
-    />
-  </form>
-</header>
 <div id="results">
   <section class="gallery">
     <%= for book <- @books do %>

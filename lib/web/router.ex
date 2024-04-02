@@ -19,6 +19,7 @@ defmodule BookStore.Router do
   EEx.function_from_file(:def, :book_index, "lib/web/book/index.html.eex", [:assigns])
   EEx.function_from_file(:def, :book_show, "lib/web/book/show.html.eex", [:assigns])
   EEx.function_from_file(:def, :book_edit, "lib/web/book/edit.html.eex", [:assigns])
+  EEx.function_from_file(:def, :book_list, "lib/web/book/list.html.eex", [:assigns])
 
   if Mix.env() == :dev do
     use Plug.Debugger
@@ -57,6 +58,14 @@ defmodule BookStore.Router do
     |> Plug.Conn.send_resp(200, page_content)
   end
 
+  def partial(conn, template, assigns \\ []) do
+    page_content = apply(__MODULE__, template, [assigns])
+    
+    conn
+    |> Plug.Conn.put_resp_content_type("text/html")
+    |> Plug.Conn.send_resp(200, page_content)
+  end
+
   get "/" do
     redirect(conn, "/books")
   end
@@ -81,15 +90,25 @@ defmodule BookStore.Router do
         limit: ^size,
         offset: ^((page - 1) * size)
 
-
     books = Repo.all(query)
 
-    pagination = %{
-      prev: (if page == 1, do: nil, else: page - 1),
-      next: (if length(books) < size, do: nil, else: page + 1)
-    }
+    data = [
+      books: books,
+      params: conn.params,
+      pagination: %{
+        prev: (if page == 1, do: nil, else: page - 1),
+        next: (if length(books) < size, do: nil, else: page + 1)
+      },
+    ]
 
-    render(conn, :book_index, books: books, params: conn.params, pagination: pagination)
+    case get_req_header(conn, "hx-trigger") do
+      ["search"] -> 
+        partial(conn, :book_list, data)
+
+      _  -> 
+        render(conn, :book_index, data)
+    end
+
   end
 
   get "/books/:id" do
