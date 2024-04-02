@@ -11,14 +11,21 @@
     <p class="mt-none mb-2xl">
       <%= @author.bio %>
     </p>
-    <p>
-      <a href='<%="/authors/#{@author.id}/edit"%>' class="mr-sm">Edit</a>
-      <a href='<%="/authors/#{@author.id}/delete"%>' class="text-danger">Delete</a>
-    </p>
+    <div class="d-flex gap-sm">
+      <button 
+        hx-delete="/authors/<%= @author.id %>" 
+        hx-confirm="Are you sure you want to delete this author?"
+        hx-target="body"
+        hx-push-url="true"
+      >
+        Delete
+      </button>
+      <a href="/authors/<%= @author.id %>/edit" class="mr-sm">Edit</a>
+    </div>
   </div>
   <div>
     <%= if @author.picture do %>
       <img src="<%=@author.picture%>" />
-      <% end %>
+    <% end %>
   </div>
 </section>

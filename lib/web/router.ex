@@ -41,10 +41,10 @@ defmodule BookStore.Router do
   # plug(:fetch_session)
   plug :dispatch
 
-  def redirect(conn, to) do
+  def redirect(conn, to, status \\ 301) do
     conn
     |> Plug.Conn.put_resp_header("location", to)
-    |> Plug.Conn.resp(301, "You are being redirected.")
+    |> Plug.Conn.resp(status, "You are being redirected.")
     |> Plug.Conn.halt()
   end
 
@@ -191,10 +191,10 @@ defmodule BookStore.Router do
     end
   end
 
-  get "/authors/:id/delete" do
+  delete "/authors/:id" do
     author = Repo.get!(Author, id)
     {:ok, _author} = Repo.delete(author)
 
-    redirect(conn, "/authors")
+    redirect(conn, "/authors", 303)
   end
 end

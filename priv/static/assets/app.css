@@ -185,6 +185,7 @@ table.def-list {
 .mr { margin-right: 1rem; }
 .pt-none { padding-top: 0; }
 .gap { gap: 1rem; }
+.gap-sm { gap: .5rem }
 .gap-lg { gap: 1.25rem; }
 .gap-xl { gap: 1.5rem; }
 .gap-2xl { gap: 2rem; }
