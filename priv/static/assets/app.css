@@ -208,3 +208,8 @@ table.def-list {
   display: flex;
   align-items: center;
 }
+
+.spinner-sm {
+  color: orange;
+  width: 1.5rem;
+}

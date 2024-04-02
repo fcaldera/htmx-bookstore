@@ -9,42 +9,15 @@
       hx-get="/books" 
       hx-trigger="search, keyup delay:200ms changed"
       hx-target="#results"
+      hx-push-url="true"
+      hx-indicator="#spinner"
+    />
+    <img id="spinner" 
+      src="/images/spinner.svg" 
+      class="htmx-indicator spinner-sm ml"
+      alt="Search in progress..."
     />
   </form>
 </header>
-<div id="results">
-  <section class="gallery">
-    <%= for book <- @books do %>
-      <div class="gallery-item">
-        <img alt="Book cover" src="/images/book-cover.jpeg" />
-        <div class="gallery-item-body">
-          <a href="/books/<%= book.id %>">
-            <%= book.title %>
-          </a>
-          <a href="/authors/<%= book.author.id %>" class="slink">
-            <%= book.author.name %>
-          </a>
-          <p><%= book.publisher %></p> 
-          <p><%= book.year %></p> 
-        </div>
-      </div>
-      <% end %>
-  </section>
-  <div class="d-flex gap">
-    <%= if @pagination.prev do %>
-      <a href="/books?q=<%= search_term %>&page=<%= @pagination.prev %>">
-        << Previous
-      </a>
-    <% else %>
-      <span class="text-muted"><< Previous</span>
-    <% end %>
 
-    <%= if @pagination.next do %>
-      <a href="/books?q=<%= search_term %>&page=<%= @pagination.next %>">
-        Next >>
-      </a>
-    <% else %>
-      <span class="text-muted">Next >></span>
-    <% end %>
-  </div>
-</div>
+<%= include(:book_list, assigns) %>

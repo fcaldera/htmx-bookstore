@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24">
+  <rect width="10" height="10" x="1" y="1" fill="orange" rx="1">
+    <animate id="IconifyId18ea0833406198665111" fill="freeze" attributeName="x"
+      begin="0;IconifyId18ea0833406198665118.end" dur="0.2s" values="1;13" />
+    <animate id="IconifyId18ea0833406198665112" fill="freeze" attributeName="y"
+      begin="IconifyId18ea0833406198665115.end" dur="0.2s" values="1;13" />
+    <animate id="IconifyId18ea0833406198665113" fill="freeze" attributeName="x"
+      begin="IconifyId18ea0833406198665116.end" dur="0.2s" values="13;1" />
+    <animate id="IconifyId18ea0833406198665114" fill="freeze" attributeName="y"
+      begin="IconifyId18ea0833406198665117.end" dur="0.2s" values="13;1" />
+  </rect>
+  <rect width="10" height="10" x="1" y="13" fill="gray" rx="1">
+    <animate id="IconifyId18ea0833406198665115" fill="freeze" attributeName="y"
+      begin="IconifyId18ea0833406198665111.end" dur="0.2s" values="13;1" />
+    <animate id="IconifyId18ea0833406198665116" fill="freeze" attributeName="x"
+      begin="IconifyId18ea0833406198665112.end" dur="0.2s" values="1;13" />
+    <animate id="IconifyId18ea0833406198665117" fill="freeze" attributeName="y"
+      begin="IconifyId18ea0833406198665113.end" dur="0.2s" values="1;13" />
+    <animate id="IconifyId18ea0833406198665118" fill="freeze" attributeName="x"
+      begin="IconifyId18ea0833406198665114.end" dur="0.2s" values="13;1" />
+  </rect>
+</svg>

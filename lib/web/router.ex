@@ -66,6 +66,10 @@ defmodule BookStore.Router do
     |> Plug.Conn.send_resp(200, page_content)
   end
 
+  def include(template, assigns \\ []) do
+    apply(__MODULE__, template, [assigns])
+  end
+
   get "/" do
     redirect(conn, "/books")
   end
