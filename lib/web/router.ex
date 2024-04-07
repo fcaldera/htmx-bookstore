@@ -60,7 +60,7 @@ defmodule BookStore.Router do
 
   def partial(conn, template, assigns \\ []) do
     page_content = apply(__MODULE__, template, [assigns])
-    
+
     conn
     |> Plug.Conn.put_resp_content_type("text/html")
     |> Plug.Conn.send_resp(200, page_content)
@@ -100,23 +100,22 @@ defmodule BookStore.Router do
       books: books,
       params: conn.params,
       pagination: %{
-        prev: (if page == 1, do: nil, else: page - 1),
-        next: (if length(books) < size, do: nil, else: page + 1)
-      },
+        prev: if(page == 1, do: nil, else: page - 1),
+        next: if(length(books) < size, do: nil, else: page + 1)
+      }
     ]
 
     case get_req_header(conn, "hx-trigger") do
-      ["search"] -> 
+      ["search"] ->
         partial(conn, :book_list, data)
 
-      _  -> 
+      _ ->
         render(conn, :book_index, data)
     end
-
   end
 
   get "/books/:id" do
-    query = 
+    query =
       from b in Book,
         join: a in Author,
         on: a.id == b.author_id,
@@ -130,17 +129,18 @@ defmodule BookStore.Router do
           price: b.price,
           isbn: b.isbn
         }
-      
+
     book = Repo.one!(query)
-    render(conn, :book_show, book: book)     
+    render(conn, :book_show, book: book)
   end
-  
+
   get "/books/:id/edit" do
     book = Repo.get!(Book, id)
-    
-    qa = from a in Author, 
-      select: %{id: a.id, name: a.name},
-      order_by: :name
+
+    qa =
+      from a in Author,
+        select: %{id: a.id, name: a.name},
+        order_by: :name
 
     authors = Repo.all(qa)
     changeset = Book.changeset(book)
@@ -148,16 +148,16 @@ defmodule BookStore.Router do
   end
 
   post "/books/:id/edit" do
-    result = 
+    result =
       Repo.get!(Book, id)
       |> Book.changeset(conn.body_params)
       |> Repo.update()
 
     case result do
-      {:ok, book} -> 
+      {:ok, book} ->
         redirect(conn, "/books/#{book.id}")
-      
-      {:error, %Ecto.Changeset{} = changeset} -> 
+
+      {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :book_edit, changeset: changeset)
     end
   end
